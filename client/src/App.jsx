@@ -11,23 +11,22 @@ import {
   Paper,
   Typography
 } from '@mui/material'
-import './App.css'
 import Navbar from './components/Navbar'
 import ProductList from './components/ProductList'
 import Admin from './components/Admin'
 import { productApi } from './services/api'
 
-// Create a theme instance with improved colors
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#2E7D32', // Forest green
+      main: '#2E7D32', 
       light: '#4CAF50',
       dark: '#1B5E20',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: '#FF5722', // Deep orange
+      main: '#FF5722', 
       light: '#FF8A65',
       dark: '#E64A19',
       contrastText: '#FFFFFF',
@@ -80,27 +79,27 @@ const theme = createTheme({
 });
 
 function App() {
-  // Products state
+ 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-  // Cart state
+  
   const [cartItems, setCartItems] = useState([]);
   
-  // Notification state
+ 
   const [notification, setNotification] = useState({
     open: false,
     message: '',
     severity: 'success'
   });
 
-  // Fetch products from API
+ 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        // Fetch products from API
+        
         const data = await productApi.getProducts();
         setProducts(data);
         setLoading(false);
@@ -109,43 +108,34 @@ function App() {
         setError('Failed to load products. Please try again later.');
         setLoading(false);
         
-        // Show error notification
+       
         setNotification({
           open: true,
-          message: 'Failed to load products. Using demo data instead.',
+          message: 'Failed to load products. Please try again later.',
           severity: 'error'
         });
-        
-        // Load demo products for fallback
-        setProducts([
-          { _id: '1', id: 1, name: 'Demo Product 1', description: 'This is a demo product', price: 19.99, imageUrl: 'https://via.placeholder.com/300/2E7D32/FFFFFF?text=Product+1', category: 'Electronics', stock: 10 },
-          { _id: '2', id: 2, name: 'Demo Product 2', description: 'This is a demo product', price: 29.99, imageUrl: 'https://via.placeholder.com/300/4CAF50/FFFFFF?text=Product+2', category: 'Clothing', stock: 5 },
-          { _id: '3', id: 3, name: 'Demo Product 3', description: 'This is a demo product', price: 39.99, imageUrl: 'https://via.placeholder.com/300/1B5E20/FFFFFF?text=Product+3', category: 'Home & Kitchen', stock: 15 },
-          { _id: '4', id: 4, name: 'Demo Product 4', description: 'This is a demo product', price: 49.99, imageUrl: 'https://via.placeholder.com/300/388E3C/FFFFFF?text=Product+4', category: 'Accessories', stock: 8 },
-        ]);
       }
     };
     
     fetchProducts();
   }, []);
 
-  // Add to cart function
   const handleAddToCart = (product) => {
     const existingItem = cartItems.find(item => item.id === product.id || item._id === product._id);
     
     if (existingItem) {
-      // If product already in cart, increase quantity
+     
       setCartItems(cartItems.map(item => 
         (item.id === product.id || item._id === product._id)
           ? { ...item, quantity: item.quantity + 1 } 
           : item
       ));
     } else {
-      // Add new product to cart
+     
       setCartItems([...cartItems, { ...product, quantity: 1 }]);
     }
     
-    // Show notification
+   
     setNotification({
       open: true,
       message: `${product.name} added to cart!`,
@@ -153,10 +143,8 @@ function App() {
     });
   };
 
-  // Calculate cart items count
   const cartItemsCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-  // Handle cart click - For now just show a notification with cart contents
   const handleCartClick = () => {
     if (cartItems.length === 0) {
       setNotification({
@@ -174,7 +162,7 @@ function App() {
     }
   };
 
-  // Close notification
+
   const handleCloseNotification = () => {
     setNotification({
       ...notification,
@@ -226,7 +214,7 @@ function App() {
             </Routes>
           </Box>
           
-          {/* Footer */}
+          {}
           <Paper 
             component="footer" 
             square 
@@ -245,7 +233,7 @@ function App() {
             </Typography>
           </Paper>
           
-          {/* Notification */}
+          {}
           <Snackbar 
             open={notification.open} 
             autoHideDuration={3000} 

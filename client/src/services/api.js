@@ -1,19 +1,14 @@
-// Base API URL - will need to be updated based on your backend service
-const API_URL = 'http://localhost:5000/api';
+// Base API URL - using environment variable with fallback
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 // Function to handle API errors
 const handleApiError = (error) => {
-  console.error('API Error:', error);
   if (error.response) {
     // The request was made and the server responded with a status code
     // that falls out of the range of 2xx
-    console.error('Data:', error.response.data);
-    console.error('Status:', error.response.status);
-    console.error('Headers:', error.response.headers);
     return Promise.reject(error.response.data);
   } else if (error.request) {
     // The request was made but no response was received
-    console.error('Request:', error.request);
     return Promise.reject({ message: 'No response from server' });
   } else {
     // Something happened in setting up the request that triggered an Error
@@ -101,8 +96,4 @@ export const productApi = {
       return handleApiError(error);
     }
   },
-};
-
-export default {
-  productApi,
 }; 
