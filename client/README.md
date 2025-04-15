@@ -1,12 +1,56 @@
-# React + Vite
+# Product Catalog Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based client application for the Product Catalog service. Built with React, Material UI, and Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Display products from the API
+- Shopping cart functionality
+- Modern UI with Material UI components
+- Responsive design
 
-## Expanding the ESLint configuration
+## Prerequisites
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Node.js (v18 or higher)
+- npm (v8 or higher)
+
+## Installation
+
+1. Clone the repository
+2. Navigate to the client directory
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+## Running the Application
+
+To start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at http://localhost:5173
+
+## Building for Production
+
+To build the application for production:
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory.
+
+## API Integration
+
+By default, the application expects the API to be running at `http://localhost:5000/api`. If your API is running on a different URL, you can update it in `src/services/api.js`.
+
+## Technologies Used
+
+- React 19
+- Material UI
+- Vite
+- Fetch API for data fetching
